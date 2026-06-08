@@ -35,7 +35,7 @@ env:
   IGNORE_BEFORE_SAVING: True # if you want to ignore some data before saving, set this to True
   # Keep credentials - change password to your actual Keep password
   KEEP_MOBILE: 13305424677
-  KEEP_PASSWORD: 00dhn286413.0
+  KEEP_PASSWORD: 00Dhn286413.0
   IGNORE_START_END_RANGE: 10 # Unit meter
   # Dont making this huge, just picking points you needing. https://developers.google.com/maps/documentation/utilities/polylineutility using this tool to making your polyline
   IGNORE_POLYLINE: 'ktjrFoemeU~IorGq}DeB'
