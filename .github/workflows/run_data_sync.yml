@@ -32,7 +32,10 @@ env:
   MIN_GRID_DISTANCE: 10 # change min distance here
   TITLE_GRID: Over 10km Runs # also here
 
-  # IGNORE_BEFORE_SAVING: True # if you want to ignore some data before saving, set this to True
+  IGNORE_BEFORE_SAVING: True # if you want to ignore some data before saving, set this to True
+  # Keep credentials - change password to your actual Keep password
+  KEEP_MOBILE: 13305424677
+  KEEP_PASSWORD: YOUR_KEEP_PASSWORD_HERE
   IGNORE_START_END_RANGE: 10 # Unit meter
   # Dont making this huge, just picking points you needing. https://developers.google.com/maps/documentation/utilities/polylineutility using this tool to making your polyline
   IGNORE_POLYLINE: 'ktjrFoemeU~IorGq}DeB'
@@ -124,7 +127,11 @@ jobs:
       - name: Run sync Keep script
         if: env.RUN_TYPE == 'keep'
         run: |
-          python run_page/keep_sync.py ${{ secrets.KEEP_MOBILE }} ${{ secrets.KEEP_PASSWORD }} --with-gpx
+          MOBILE="${{ secrets.KEEP_MOBILE }}"
+          PASS="${{ secrets.KEEP_PASSWORD }}"
+          [ -z "$MOBILE" ] && MOBILE="${{ env.KEEP_MOBILE }}"
+          [ -z "$PASS" ] && PASS="${{ env.KEEP_PASSWORD }}"
+          python run_page/keep_sync.py "$MOBILE" "$PASS" --with-gpx
 
       - name: Run sync Coros script
         if: env.RUN_TYPE == 'coros'
